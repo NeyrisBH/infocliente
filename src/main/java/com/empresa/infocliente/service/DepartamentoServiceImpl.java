@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import com.empresa.infocliente.model.Departamento;
+import com.empresa.infocliente.repository.DepartamentoRepository;
 
 public class DepartamentoServiceImpl implements DepartamentoService {
 
+	private DepartamentoRepository repositorio;
 	@Override
 	public List<Departamento> consultarDepartamentos() {
-		// TODO Auto-generated method stub
-		return null;
+		return repositorio.findAll();
 	}
 
 	@Override
@@ -21,25 +22,28 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Override
 	public Departamento crearDepartamento(Departamento departamento) {
-		// TODO Auto-generated method stub
+		Optional<Departamento> consultarDepartamentoParaCrear = repositorio.findById(departamento.getId());
+		if(!consultarDepartamentoParaCrear.isPresent()) {
+			return repositorio.insert(departamento);
+		}
 		return null;
 	}
 
 	@Override
 	public Departamento actualizarDepartamento(Departamento departamento) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
-	public void eliminarDepartamentoPorId(Long id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void eliminarDepartamento(Departamento departamento) {
-		// TODO Auto-generated method stub
+	public String eliminarDepartamentoPorId(Long id) {
+		Optional<Departamento> consultarDepartamentoParaEliminar = repositorio.findById(id);
+		if (!consultarDepartamentoParaEliminar.isPresent()) {
+			return "Registro no encontrado, no se puede eliminar";
+		} else {
+			repositorio.delete(consultarDepartamentoParaEliminar.get());
+			return "Eliminado correctamente";
+		}
 
 	}
 

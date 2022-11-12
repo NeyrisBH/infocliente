@@ -12,6 +12,5 @@ public interface DepartamentoService {
 	public Optional<Departamento> consultarDepartamantoPorId(Long id);
 	public Departamento crearDepartamento(Departamento departamento);
 	public Departamento actualizarDepartamento(Departamento departamento);
-	public void eliminarDepartamentoPorId(Long id);
-	public void eliminarDepartamento(Departamento departamento);
+	public String eliminarDepartamentoPorId(Long id);
 }
