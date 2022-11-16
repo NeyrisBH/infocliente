@@ -28,11 +28,11 @@ public class DepartamentoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> consultarPersonaPorId(@PathVariable Long id){
 		Optional<Departamento> departamento = servicio.consultarDepartamantoPorId(id);
-		if (departamento.) {
+		//if () {
 			
-		} else {
+		//} else {
 
-		}
+		//}
 		return null;
 	}
 }
